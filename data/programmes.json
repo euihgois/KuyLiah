@@ -1,0 +1,56 @@
+[
+    {
+        "name": "Teknik Industri",
+        "min_score": 90,
+        "min_age": 17,
+        "UniversityId": 1
+    },
+    {
+        "name": "Teknik Mesin",
+        "min_score": 80,
+        "min_age": 18,
+        "UniversityId": 1
+    },
+    {
+        "name": "Bisnis Administrasi",
+        "min_score": 85,
+        "min_age": 18,
+        "UniversityId": 1
+    },
+    {
+        "name": "Kedokteran",
+        "min_score": 95,
+        "min_age": 16,
+        "UniversityId": 2
+    },
+    {
+        "name": "Hukum",
+        "min_score": 90,
+        "min_age": 18,
+        "UniversityId": 2
+    },
+    {
+        "name": "Teknik Mesin",
+        "min_score": 80,
+        "min_age": 18,
+        "UniversityId": 2
+    },
+    {
+        "name": "Kedokteran",
+        "min_score": 90,
+        "min_age": 80,
+        "UniversityId": 3
+    },
+    {
+        "name": "Teknik Industri",
+        "min_score": 90,
+        "min_age": 70,
+        "UniversityId": 3
+    },
+    {
+        "name": "Bahasa Arab",
+        "min_score": 75,
+        "min_age": 15,
+        "UniversityId": 3
+    }
+]

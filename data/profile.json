@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Udin Cakma",
+        "age": 18,
+        "school" : "Mercusuar",
+        "gender": "Male",
+        "score": 85,
+        "UserId": 1,
+        "UniversityId": 1
+    },{
+        "name": "Bagus Kahfi",
+        "age": 15,
+        "school" : "SMAN 69 JAKARTA",
+        "gender": "Male",
+        "score": 79,
+        "UserId": 2,
+        "UniversityId": 3
+    },{
+        "name": "Odong Sia",
+        "age": 20,
+        "school" : "Standar",
+        "gender": "Female",
+        "score": 69,
+        "UniversityId": 2,
+        "UserId": 3
+    }
+]
