@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+    get halo(){
+      return `Hallo ${this.name}`
+    }
+
     static associate(models) {
       // define association here
       this.belongsTo(models.User)
@@ -21,8 +25,8 @@ module.exports = (sequelize, DataTypes) => {
     school: DataTypes.STRING,
     gender: DataTypes.STRING,
     score: DataTypes.DECIMAL,
-    UserId: DataTypes.INTEGER,
-    UniversityId: DataTypes.INTEGER
+    UniversityId: DataTypes.INTEGER,
+    UserId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Profile',

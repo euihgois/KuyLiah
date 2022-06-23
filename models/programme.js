@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       this.belongsTo(models.University)
     }
+
+    // SELECT u.name, ROUND(AVG("min_score")) as average FROM "Programmes" p 
+    // LEFT OUTER JOIN "Universities" u ON u.id = p."UniversityId" GROUP BY u.name
+
   }
   Programme.init({
     name: DataTypes.STRING,
