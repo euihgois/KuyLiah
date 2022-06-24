@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       this.hasOne(models.Profile)
     }
+  
+
+
+
   }
   User.init({
     email: {

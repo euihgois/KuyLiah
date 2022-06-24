@@ -10,47 +10,48 @@
 </head>
 <body>
 <div>
-    <%= JSON.stringify(student) %> 
-    <%= JSON.stringify(programmes) %> 
+    
+    <%=  JSON.stringify(programmes.map(x => {return x.chance}).join(",")) %> 
+    
 </div>
 <div class="container" style="width: 700px;">
     <div class="text-center">
         <h1> Detail Univ </h1>
     </div>
     <div>
-        <strong>Kamu mendaftar di Universitas</strong> <%= programmes[0].University.name  %> 
+        <strong>Kamu mendaftar di Universitas</strong> <%= //programmes[0].University.name  %> 
         <br>
-        Peluang Masuk <%= student.name  %>
+        Peluang Masuk 
     </div>
     
     <div style="height: 400px; width:400px;">
         <canvas id="myChart" ></canvas>
     </div>
 
+      
     <div style="height: 400px; width:400px;">
         <canvas id="wowwow" ></canvas>
     </div>
+    
 </div>
     <script> 
     const data = {
     labels: [
-    'Red',
-    'White',
+    ...(<%-JSON.stringify(programmes.map(x => {return x.name}).join(","))%>).split(',') 
     ],
     datasets: [{
-    label: 'My First Dataset',
-    data: [<%- JSON.stringify(Helper.showChance(student.score , programmes[0].min_score)) %>, 50, 100],
+    label: 'Peluang Masuk',
+    data:  [ ...(<%-JSON.stringify(programmes.map(x => {return x.chance}).join(","))%>).split(',') ],
     backgroundColor: [
       'rgb(255, 99, 132)',
-      'rgb(255, 255, 255)',
-      'rgb(255, 205, 86)'
+      'rgb(0, 255, 0)'
     ],
-    hoverOffset: 4
+    hoverOffset: 3
     }]
     };
     
-    const config = {
-    type: 'doughnut',
+    const config = {    
+    type: 'bar',
     data: data,
     };    
     const myChart = new Chart(

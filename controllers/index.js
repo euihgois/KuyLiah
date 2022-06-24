@@ -1,7 +1,7 @@
 const {User,Programme,University,Profile } = require('../models')
 const bcrypt = require('bcryptjs')
 const sequelize = require('sequelize')
-const Helper = require('../helpers/index')
+const showChance = require('../helpers/index')
 
 class Controller{
     static index(req,res){
@@ -48,12 +48,12 @@ class Controller{
     }
 
     static loginGet(req,res){
-        //const error = req.query.error
-        res.render(`login/login` )//, {error} )
+        const error = req.query.error
+        res.render(`login/login` , {error} )
     }
 
     static loginPost(req,res){
-        /*const {email, password} = req.body
+        const {email, password} = req.body
         User.findOne({
             where: {
                 email: email
@@ -66,6 +66,8 @@ class Controller{
                     req.session.userId = user.id
                     if (user.role === 'student') {
                         return res.redirect(`../student/${user.id}`)
+                    } else if(user.role === 'admin'){
+                        return res.redirect(`../admin/${user.id}`)
                     } else { // tambahin else if admin
                         const error = `Invalid email or password`
                         return res.redirect(`/login?error=${error}`)
@@ -79,11 +81,10 @@ class Controller{
         .catch((err) => {
             res.send(err)
         })
-        */
+        
     }
 
     static logout(req,res){
-        /*
         req.session.destroy((err)=> {
             if (err) {
                 console.log(err);
@@ -91,7 +92,7 @@ class Controller{
                 res.redirect('../login')
             }
         })
-        */
+        
     }
 
     static showPage(req, res) {
@@ -126,7 +127,7 @@ class Controller{
     }
 
     static showDetail(req, res) {
-        let option = {
+        let option1 = {
             include: {
                 model: University
             },
@@ -134,14 +135,35 @@ class Controller{
                 UniversityId: +req.params.universityId
             }
         }
-        let data = {Helper}
+        let data = {}
+
         Profile.findByPk(+req.params.studentId)
             .then(student => {
                 data = {...data, student};
-                return Programme.findAll(option)
+                return Programme.findAll(option1)
             })
             .then(programmes => {
+                programmes = programmes.map(({name, min_score}) => {
+                    let chance = showChance(data.student.score, min_score);
+                    return {name, chance}
+                })
                 data = {...data, programmes}
+                // res.render('student/show_detail', data)
+
+                let option = {
+                    attributes: [[sequelize.fn('ROUND', sequelize.fn('AVG', sequelize.col('min_score'))), 'average']],
+                    include: {
+                        all: true
+                    },
+                    group: 'University.id',
+                    where: {
+                        UniversityId: +req.params.universityId
+                    }
+                }
+                return Programme.findAll(option)
+            })
+            .then(average => {
+                data = {...data, average}
                 res.render('student/show_detail', data)
             })
             .catch(err => res.send(err))

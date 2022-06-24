@@ -10,7 +10,7 @@ router.get('/login', Controller.loginGet)
 router.post('/login', Controller.loginPost)
 router.get('/logout', Controller.logout)
 
-/*
+
 router.use(function(req, res, next) {
     if(!req.session.userId) {
         const error = `Please login first`
@@ -19,7 +19,7 @@ router.use(function(req, res, next) {
         next()
     }
 })
-*/
+
 /*
 router.get('/login', Controller.login)                      //login page
 router.post('/login', Controller.submit)                   //login submit
