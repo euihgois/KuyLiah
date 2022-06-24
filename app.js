@@ -1,11 +1,21 @@
 const express = require('express')
 const app = express()
-const port = 3002
+const session = require('express-session')
+const port = process.env.PORT || 3000;
 
-app.set('view engine', 'ejs')
-app.use(express.urlencoded({extended: true}))
-app.use('/', require('./routes'))
+app.set('view engine', 'ejs');
+app.use(express.urlencoded({extended: false}));
+app.use(session({
+  secret: 'ruang kangguru',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { 
+      secure: false,
+      sameSite: true
+  }
+}))
+app.use("/", require("./routes/index"))
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+  console.log(`Example app listening on port ${port}`)
 })
